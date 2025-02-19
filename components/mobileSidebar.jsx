@@ -11,7 +11,6 @@ const MobileSideBar = () => {
         <Menu />
       </SheetTrigger>
       <SheetContent side="left" className="p-0 bg-secondary pt-10 w-32">
-        {/* VisuallyHidden ensures screen readers can detect the title */}
         <DialogTitle asChild>
           <VisuallyHidden>Mobile Sidebar</VisuallyHidden>
         </DialogTitle>
