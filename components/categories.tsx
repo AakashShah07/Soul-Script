@@ -32,23 +32,25 @@ const Categories = ({ data }: CategoriesProps) => {
          <button
          onClick={()=>onClick(undefined)}
           className={cn(
-            "flex items-center text-center text-xs md:text-start px-2 md:px-4 py-2 md:py-2 rounded-md bg-primary/10 hover:opacity-75 transition"
+            "flex items-center text-center text-xs md:text-start px-2 md:px-4 py-2 md:py-2 rounded-md bg-primary/10 hover:opacity-75 transition",
+            !categoryId ? "bg-primary/25" : "bg-primary/10"
           )}
         >
             Newest
         </button>
-      {data.map((item) => (
+     {data.map((item) => (
         <button
           key={item.id}
           onClick={()=>onClick(item.id)}
 
           className={cn(
-            "flex items-center text-center text-xs md:text-start px-2 md:px-4 py-2 md:py-2 rounded-md bg-primary/10 hover:opacity-75 transition"
+            "flex items-center text-center text-xs md:text-start px-2 md:px-4 py-2 md:py-2 rounded-md bg-primary/10 hover:opacity-75 transition",
+            item.id === categoryId ? "bg-primary/25" : "bg-primary/10"
           )}
         >
             {item.name}
         </button>
-      ))}
+      ))} 
     </div>
   );
 };
