@@ -13,9 +13,11 @@ const CampanionIdPage = async({
 }: CampanionIdPageProps) => {
 
 
+    const { companionId } = await params; // Await params here
+
     const companion = await prismadb.companion.findUnique({
-        where:{
-            id: params.companionId
+        where: {
+            id: companionId
         }
     });
 
