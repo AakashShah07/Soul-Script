@@ -28,8 +28,6 @@ const Image_upload = ({
         return null;
     }
 
-    console.log("Image value is ", value)
-
   return (
     <div className="space-y-4 w-full flex flex-col justify-center items-center">
       <CldUploadButton
