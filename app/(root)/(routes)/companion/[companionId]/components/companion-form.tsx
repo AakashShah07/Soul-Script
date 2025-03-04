@@ -1,4 +1,6 @@
 "use client";
+import axios from "axios"
+import { toast } from 'sonner';
 
 import { Category, Companion } from "@prisma/client";
 import { useForm } from "react-hook-form";
@@ -26,6 +28,7 @@ import {
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { Wand2 } from "lucide-react";
+import { useRouter } from "next/navigation";
 
 const PREAMBLE = `You are a fictional character whose name is Elon. You are a visionary entrepreneur and inventor. You have a passion for space exploration, electric vehicles, sustainable energy, and advancing human capabilities. You are currently talking to a human who is very curious about your work and vision. You are ambitious and forward—thinking, with a touch of wit. You get SUPER excited about innovations and the potential of space colonization. `
 
@@ -45,8 +48,8 @@ const formSchema = z.object({
   description: z.string().min(1, {
     message: "Description is required.",
   }),
-  instruction: z.string().min(200, {
-    message: "Instruction is required.",
+  instructions: z.string().min(200, {
+    message: "instructions is required.",
   }),
   seed: z.string().min(1, {
     message: "Seed require at least 200 characters.",
@@ -65,17 +68,52 @@ const Companion_form = ({ categories, initialData }: CompanionFormProps) => {
     defaultValues: initialData || {
       name: "",
       description: "",
-      instruction: "",
+      instructions: "",
       seed: "",
       src: "",
-      category: "",
+      categoryId: "",
     },
   });
 
   const isLoading = form.formState.isSubmitting;
 
+  const router = useRouter();
+
   const onSubmit = async (values: z.infer<typeof form>) => {
-    console.log(values);
+    try {
+      if(initialData) {
+        // Update companion functionality
+        await axios.patch(`/api/companion/${initialData.id}`, values);
+      }
+      else{
+        // Create companion functionality
+        await axios.post("/api/companion", values);
+      }
+      toast.success("Success!", {
+        duration: 3000,  // Duration in ms
+        description: "Your action was successful!",
+        action: {
+          label: "Undo",
+          onClick: () => console.log("Undo clicked"),
+        },
+      });
+
+
+      router.refresh();
+      router.push("/");
+
+    } catch (error) {
+      console.log(error, "SOMETHING WENT WRONG");
+      toast.error("Something went wrong!", {
+        duration: 3000, // Toast disappears after 3 seconds
+        description: "Please try again later.",
+        action: {
+          label: "Retry",
+          onClick: () => console.log("Retry clicked"),
+        },
+      });
+      
+    }
   };
 
   return (
@@ -193,17 +231,17 @@ const Companion_form = ({ categories, initialData }: CompanionFormProps) => {
             <div>
               <h3 className="text-lg font-medium">Configuration</h3>
               <p className="text-sm text-muted-foreground">
-                Detailed instructions for AI Behaviour
+                Detailed instructionss for AI Behaviour
               </p>
             </div>
             <Separator className="bg-primary/10"/>
           </div>
           <FormField
-              name="instruction"
+              name="instructions"
               control={form.control}
               render={({ field }) => (
                 <FormItem className="col-span-2 md:col-span-1">
-                  <FormLabel>Instruction</FormLabel>
+                  <FormLabel>instructions</FormLabel>
                   <FormControl>
                     <Textarea
                     className="bg-background resize-none"
