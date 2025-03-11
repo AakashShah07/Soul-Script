@@ -15,12 +15,13 @@ const page =  async({
   searchParams
 }: pageProps) => {
 
+  const categoryId = searchParams?.categoryId || "";  // Default to empty string
+  const name = searchParams?.name || "";  
+
   const data = await prismadb.companion.findMany({
-    where:{
-      categoryId: searchParams.categoryId,
-      name: {
-        search: searchParams.name
-      }
+    where: {
+      categoryId: categoryId || undefined,  // Avoid filtering if empty
+      name: name ? { search: name } : undefined,
     },
     orderBy:{
       createdAt: "desc",
