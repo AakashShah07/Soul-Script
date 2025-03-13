@@ -19,7 +19,7 @@ const ChatForm = ({
   return (
     <form
     onSubmit={onSubmit}
-    className="border-t border-primary/10 py-4 flex items-center gap-x-2"
+    className=" flex border-t border-primary/10 py-4  items-center gap-x-2"
   >
  
 
