@@ -15,8 +15,7 @@ const page =  async({
   searchParams
 }: pageProps) => {
 
-  const categoryId = searchParams?.categoryId || "";  // Default to empty string
-  const name = searchParams?.name || "";  
+  const {categoryId, name} = await searchParams || "";  // Default to empty string
 
   const data = await prismadb.companion.findMany({
     where: {

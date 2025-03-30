@@ -49,6 +49,9 @@ export async function PATCH(req: Request,
                }
           });
 
+          const completion = "Here is a sample response"; // Replace with actual AI logic
+          console.log("Generated Completion:", completion); // ✅ Ensure response exists
+
           return NextResponse.json(companion);
      
    } catch (error) {
@@ -78,6 +81,6 @@ export async function DELETE
                return NextResponse.json(companion)
           } catch (error) {
                console.error("[COMPANION_DELETE]", error);
-               return new NextResponse("Internal error", {status:500})    
+               return new NextResponse("Internal error routeJs", {status:500})    
           }
       }
