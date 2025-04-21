@@ -43,12 +43,12 @@ export async function GET(){
             line_items: [
                 {
                     price_data:{
-                        currency:"INR",
+                        currency:"USD",
                         product_data:{
                             name:"soul_pro",
                             description:"Create custom AI powered souls"
                         },
-                        unit_amount: 99,
+                        unit_amount: 1.99,
                         recurring:{
                             interval:"month"
                         }
