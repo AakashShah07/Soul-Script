@@ -5,6 +5,7 @@ import { ClerkProvider } from "@clerk/nextjs";
 import { ThemeProvider } from "@/components/theme-provider";
 import { cn } from "@/lib/utils";
 import { Toaster } from 'sonner'
+import ProModal from "@/components/pro-modal";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -31,6 +32,7 @@ export default function RootLayout({
       <html lang="en" suppressHydrationWarning>
       <body className={cn(geistSans.variable, geistMono.variable, "bg-secondary")}>
       <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+        <ProModal/>
             {children}
             <Toaster />
 

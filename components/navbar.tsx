@@ -9,12 +9,16 @@ import MobileSideBar from "@/components/mobileSidebar"
 
 import { cn } from "@/lib/utils";
 import { ModeToggle } from "./theme_toggle";
+import { useProModal } from "@/hooks/use-po-modal";
 const font = Poppins({
   weight: "600",
   subsets: ["latin"],
 });
 
 const Navbar = () => {
+
+  const proModal = useProModal();
+
   return (
     <div className="fixed w-full z-50 flex justify-between items-center py-2 px-4 border-b border-primary/10 bg-secondary h-16">
       <div className="flex items-center">
@@ -31,7 +35,7 @@ const Navbar = () => {
         </Link>
       </div>
       <div className="flex items-center gap-x-3">
-        <Button variant="premium">
+        <Button variant="premium" onClick={proModal.onOpen}>
           Upgrade
           <Sparkles className="h-4 w-4 fill-white text-white" />
         </Button>

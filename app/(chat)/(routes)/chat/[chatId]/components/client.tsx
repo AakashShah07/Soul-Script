@@ -112,7 +112,7 @@ const ChatClient = ({ companion }: ChatClientProps) => {
 };
 
   return (
-    <div className="flex flex-col h-screen p-4 space-y-2">
+    <div className="flex flex-col h-full p-4 space-y-2">
       <ChatHeader companion={companion} />
       <div className="flex-1 overflow-y-auto pr-4">
         <ChatMessages companion={companion} isLoading={isLoading} messages={messages} />
