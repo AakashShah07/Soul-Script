@@ -10,7 +10,7 @@ const RootLayout = async ({ children }: { children: React.ReactNode }) => {
        
       <Navbar isPro={isPro}/>
       <div className="hidden md:flex mt-16 w-20 flex-col fixed insert-y-0">
-        <SideBar/>
+        <SideBar  isPro={isPro}/>
       </div>
       <main className="md:pl-20 pt-16 h-full">{children}</main>
     </div>
