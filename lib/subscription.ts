@@ -1,4 +1,4 @@
-import { auth } from "@clerk/nextjs/server"
+import  {auth, currentUser} from "@clerk/nextjs/server"
 
 import prismadb from "./prismadb"
 
@@ -6,15 +6,16 @@ const DAY_IN_MS = 1000 * 60 * 60 * 24;
 
 export const checkSubscription = async () => {
 
-    const {userId} = auth();
-    if (!userId) {
+    const user = await currentUser();
+
+    if (!user) {
         return false;
     }
 
-    const userSubscription = await prismadb.userSubscription.findUnique({
+    const userSubscription = await prismadb.userSubsciption.findUnique({
 
         where :{
-            userId: userId
+            userId: user.id
         },
         select:{
             stripeCustomerId: true,

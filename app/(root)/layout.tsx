@@ -1,10 +1,14 @@
 import Navbar from "@/components/navbar";
 import SideBar from "@/components/sidebar";
-const RootLayout = ({ children }: { children: React.ReactNode }) => {
+import { checkSubscription } from "@/lib/subscription";
+const RootLayout = async ({ children }: { children: React.ReactNode }) => {
+
+  const isPro  = await checkSubscription();
+
   return (
     <div className="h-full">
        
-      <Navbar />
+      <Navbar isPro={isPro}/>
       <div className="hidden md:flex mt-16 w-20 flex-col fixed insert-y-0">
         <SideBar/>
       </div>
