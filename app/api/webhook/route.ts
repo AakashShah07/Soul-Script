@@ -40,7 +40,7 @@ export async function POST(req:Request) {
         if(!session?.metadata?.userId){
             return new NextResponse("Missing userId", { status: 400 });
         }
-        await prismadb.userSubscription.create({
+        await prismadb.userSubsciption.create({
             data:{
                 userId:session?.metadata?.userId,
                 stripeSubscriptionId: subscription.id,
@@ -59,7 +59,7 @@ export async function POST(req:Request) {
             session.subscription as string
         );
 
-        await prismadb.userSubscription.update({
+        await prismadb.userSubsciption.update({
             where:{
                 stripeSubscriptionId: subscription.id
             },

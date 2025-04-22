@@ -9,19 +9,18 @@ import { absoluteUrl } from "@/lib/utils";
 const settingsUrl = absoluteUrl("/settings")
 
 export async function GET(){
+    
     try {
-        const {userId} = auth();
+        
         const user = await currentUser();
-        if (!userId || !user) {
+        if (!user.id || !user) {
             return new NextResponse("Unauthorized", { status: 401 });
         }
 
-        const userSubscription = await prismadb.userSubscription.findUnique({
-
+        const userSubscription = await prismadb.userSubsciption.findUnique({
             where:{
-                userId
+                userId: user.id
             }
-
         });
 
         if (userSubscription && userSubscription.stripeCustomerId){
@@ -33,6 +32,8 @@ export async function GET(){
             return new NextResponse(JSON.stringify({url: stripeSession.url}));
         }
 
+        console.log("UserId is ",user.id)
+        const userId = user.id
         const stripeSession = await stripe.checkout.sessions.create({
             success_url: settingsUrl,
             cancel_url: settingsUrl,
@@ -48,11 +49,12 @@ export async function GET(){
                             name:"soul_pro",
                             description:"Create custom AI powered souls"
                         },
-                        unit_amount: 1.99,
+                        unit_amount: 199, // 💥 FIXED HERE
                         recurring:{
                             interval:"month"
                         }
                     },
+                    
                     quantity:1
                 }
             ],

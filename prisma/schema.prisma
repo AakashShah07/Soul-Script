@@ -56,7 +56,7 @@ model Message{
   @@index([companionId])
 }
 
-model UserSubsciption {
+model userSubsciption {
 
   id                        String @id @default(uuid())
   userId                    String @unique
