@@ -6,7 +6,7 @@
 html,
 body,
 :root{
-  height: 110%;
+  height: 100%;
 }
 
 body {
@@ -80,11 +80,11 @@ body {
 
 
 
-@layer base {
+/* @layer base {
   * {
-    @apply border-border outline-ring/50;
+    @apply border-border outline-ring;
   }
   body {
     @apply bg-background text-foreground;
-  }
-}
+  } */
+/* } */

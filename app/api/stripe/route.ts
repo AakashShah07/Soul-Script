@@ -6,7 +6,7 @@ import { stripe } from "@/lib/stripe";
 
 import { absoluteUrl } from "@/lib/utils";
 
-const settingsUrl = absoluteUrl("/settings")
+const settingsUrl = absoluteUrl("/setting")
 
 export async function GET(){
     

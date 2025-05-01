@@ -19,12 +19,9 @@ const ChatForm = ({
   return (
     <form
     onSubmit={onSubmit}
-    className=" flex border-t border-primary/10 py-4  items-center gap-x-2"
+    className=" flex items-center py-4 border-t border-primary/10 gap-x-2"
   >
  
-
-
-      
       <Input
       disabled={isLoading}
       value={input}

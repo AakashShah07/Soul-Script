@@ -41,8 +41,8 @@ const ChatHeader = ({ companion }: ChatHeaderProps) => {
   }
 
   return (
-    <div className="flex w-full justify-between items-center border-b border-primary/10 pb-4">
-    <div className="flex gap-x-2 items-center">
+    <div className="flex items-center justify-between w-full pb-4 border-b border-primary/10">
+      <div className="flex items-center gap-x-2">
     <Button onClick={() => router.back()} variant="ghost" size="icon">
           <ChevronLeft className="font-bold h-10 w-10" />
         </Button>

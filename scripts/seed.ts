@@ -16,6 +16,7 @@ async function main() {
                 {name:"Philosophy"},
                 {name:"Scientists"},
                 {name:"Anime Characters"},
+                {name:"Gods"}
                                
             ]
         })
