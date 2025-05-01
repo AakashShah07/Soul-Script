@@ -5,13 +5,20 @@ import { Dialog, DialogContent,DialogHeader,DialogTitle,DialogDescription } from
 import { Separator } from "./ui/separator";
 import { Button } from "./ui/button";
 import { toast } from 'sonner';
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 
 
 const ProModal = () => {
     const proModal = useProModal();
     const [loading, setLoading] = useState(false);
+
+    const [isMounted, setIsMounted] = useState(false);
+
+    useEffect(() => {
+        setIsMounted(true);
+
+    },[])
 
     const onSubscribe = async () => {
         try {
@@ -33,6 +40,10 @@ const ProModal = () => {
         finally {
             setLoading(false);
         }
+    } 
+
+    if(!isMounted){
+        return null;
     }
 
   return (
