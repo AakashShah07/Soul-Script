@@ -9,7 +9,7 @@ import { currentUser } from "@clerk/nextjs/server";
 
 export async function POST(
   request: Request,
-  context: { params: { chatId: string } }
+  context: { params: Promise<{ chatId: string }> }
 ) {
   try {
     const { chatId } = await context.params;

@@ -3,10 +3,8 @@ import { checkSubscription } from "@/lib/subscription";
 import { auth, currentUser } from "@clerk/nextjs/server";
 import { NextResponse } from "next/server";
 
-export async function PATCH(req: Request,
-
-    {params} : {params: {companionId: string}}
-){
+export async function PATCH(req: Request, props: {params: Promise<{companionId: string}>}) {
+     const params = await props.params;
      try{
           const body = await req.json();
           const user = await currentUser();
@@ -65,27 +63,24 @@ export async function PATCH(req: Request,
    }
 }
 
-export async function DELETE
-     (req: Request,
-
-          {params} : {params: {companionId: string}}
-      ){
-          try {
-               const user = await currentUser();
-               const userId = user?.id;
-               if(!userId){
-                    return new NextResponse("Unauthorized, Get the hell out of my app",{status: 401})
-               }
-                const companion = await prismadb.companion.delete({
-                    where: {
-                         userId,
-                         id: params.companionId
-                    }
-                })
-
-               return NextResponse.json(companion)
-          } catch (error) {
-               console.error("[COMPANION_DELETE]", error);
-               return new NextResponse("Internal error routeJs", {status:500})    
+export async function DELETE(req: Request, props: {params: Promise<{companionId: string}>}) {
+     const params = await props.params;
+     try {
+          const user = await currentUser();
+          const userId = user?.id;
+          if(!userId){
+               return new NextResponse("Unauthorized, Get the hell out of my app",{status: 401})
           }
-      }
+           const companion = await prismadb.companion.delete({
+               where: {
+                    userId,
+                    id: params.companionId
+               }
+           })
+
+          return NextResponse.json(companion)
+     } catch (error) {
+          console.error("[COMPANION_DELETE]", error);
+          return new NextResponse("Internal error routeJs", {status:500})    
+     }
+}

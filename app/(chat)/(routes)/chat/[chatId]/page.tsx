@@ -4,12 +4,13 @@ import ChatClient from "./components/client";
 import { auth } from "@clerk/nextjs/server";
 
 interface PageProps {
-  params: {
+  params: Promise<{
     chatId: string;
-  };
+  }>;
 }
 
-const ChatIdPage = async ({ params }: PageProps) => {
+const ChatIdPage = async (props: PageProps) => {
+  const params = await props.params;
 
   const { userId } = auth();
 
