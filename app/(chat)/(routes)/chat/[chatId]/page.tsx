@@ -12,7 +12,7 @@ interface PageProps {
 const ChatIdPage = async (props: PageProps) => {
   const params = await props.params;
 
-  const { userId } = auth();
+  const { userId } = await auth();
 
   const { chatId } = params;
 
