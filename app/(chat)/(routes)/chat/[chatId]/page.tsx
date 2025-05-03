@@ -3,13 +3,14 @@ import { redirect } from "next/navigation";
 import ChatClient from "./components/client";
 import { auth } from "@clerk/nextjs/server";
 
-interface ChatIdProps {
+interface PageProps {
   params: {
     chatId: string;
   };
 }
 
-const ChatIdPage = async ({ params }) => {
+const ChatIdPage = async ({ params }: PageProps) => {
+
   const { userId } = auth();
 
   const { chatId } = params;
