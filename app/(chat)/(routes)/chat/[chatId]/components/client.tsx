@@ -117,7 +117,13 @@ const ChatClient = ({ companion }: ChatClientProps) => {
       <div className="flex-1 overflow-y-auto pr-4">
         <ChatMessages companion={companion} isLoading={isLoading} messages={messages} />
       </div>
-      <ChatForm handleInputChange={(e) => setInput(e.target.value)} input={input} onSubmit={onSubmit} isLoading={isLoading} />
+      <ChatForm
+  handleInputChange={(e: React.ChangeEvent<HTMLInputElement>) => setInput(e.target.value)}
+  input={input}
+  onSubmit={onSubmit}
+  isLoading={isLoading}
+/>
+
     </div>
   );
 };
