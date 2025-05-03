@@ -4,7 +4,7 @@ import { currentUser } from "@clerk/nextjs/server";
 import { redirect } from "next/dist/server/api-utils";
 import { RedirectToSignIn } from "@clerk/nextjs";
 
-interface CampanionIdPageProps {
+interface CampanionIdPageProps  {
     params: {
         companionId: string
     };
@@ -13,7 +13,7 @@ interface CampanionIdPageProps {
 
 const CampanionIdPage = async({
     params
-}: CampanionIdPageProps) => {
+}) => {
 
      const user = await currentUser();
      const userId = user?.id;

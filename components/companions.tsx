@@ -3,14 +3,11 @@ import Image from "next/image";
 
 import {
   Card,
-  CardContent,
-  CardDescription,
   CardFooter,
   CardHeader,
-  CardTitle,
 } from "@/components/ui/card";
 import Link from "next/link";
-import { MessageSquare, MessageSquareWarning } from "lucide-react";
+import { MessageSquare } from "lucide-react";
 
 interface ComProps {
   data: (Companion & {
@@ -20,7 +17,7 @@ interface ComProps {
   })[];
 }
 
-const Companions = ({ data }: ComProps) => {
+const Companions = ({ data }) => {
   if (data.length === 0) {
     return (
       <div className="pt-10 flex flex-col items-center justify-normal space-y-3">

@@ -24,7 +24,7 @@ const ChatMessage = ({
     content,
     isLoading,
     src
-}: ChatMessageProps) => {
+}) => {
 
     const {theme} = useTheme();
 

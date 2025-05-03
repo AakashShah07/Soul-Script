@@ -13,7 +13,7 @@ interface pageProps{
 
 const page =  async({
   searchParams
-}: pageProps) => {
+}) => {
 
   const {categoryId, name} = await searchParams || "";  // Default to empty string
 

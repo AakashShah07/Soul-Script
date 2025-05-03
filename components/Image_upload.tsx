@@ -15,7 +15,7 @@ const Image_upload = ({
     value,
     onChange,
     disabled
-}: ImageUploadProps) => {
+}) => {
 
 
     const [isMounted, setMount] = useState(false);

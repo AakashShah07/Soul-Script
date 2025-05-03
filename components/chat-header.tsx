@@ -22,7 +22,7 @@ interface ChatHeaderProps {
   };
 }
 
-const ChatHeader = ({ companion }: ChatHeaderProps) => {
+const ChatHeader = ({ companion }) => {
   const router = useRouter();
   const { user } = useUser();
 

@@ -15,7 +15,7 @@ interface ChatFormProps {
 
 const ChatForm = ({
     input , handleInputChange, onSubmit, isLoading
-}: ChatFormProps) => {
+}) => {
   return (
     <form
     onSubmit={onSubmit}
