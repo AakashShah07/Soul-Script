@@ -1,13 +1,21 @@
+
 import prismadb from "@/lib/prismadb";
 import Companion_form from "./components/companion-form";
 import { currentUser } from "@clerk/nextjs/server";
-import { redirect } from "next/dist/server/api-utils";
 import { RedirectToSignIn } from "@clerk/nextjs";
 
+
+// interface CompanionIdPageProps {
+//     params: {
+//       companionId: string;
+//     };
+//   }
 
 
 const CampanionIdPage = async({
     params
+}: {
+    params: Promise<{ companionId: string }>
 }) => {
 
      const user = await currentUser();
@@ -18,6 +26,7 @@ const CampanionIdPage = async({
      }
 
 
+     // @ts-ignore
     const { companionId } = await params; // Await params here
 
     const companion = await prismadb.companion.findUnique({

@@ -15,7 +15,7 @@ export default function ChatMessages({
   companion,
   isLoading,
   messages
-}) {
+}:ChatMessagesProps) {
   const scrollRef = useRef<ElementRef<"div">>(null);
 
   const [fakeLoading, setFakeLoading] = useState(

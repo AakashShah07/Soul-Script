@@ -15,10 +15,10 @@ interface ChatFormProps {
 
 const ChatForm = ({
     input , handleInputChange, onSubmit, isLoading
-}) => {
+}:ChatFormProps) => {
   return (
     <form
-    onSubmit={onSubmit}
+    onSubmit={(e) => onSubmit(e, undefined)}
     className=" flex items-center py-4 border-t border-primary/10 gap-x-2"
   >
  

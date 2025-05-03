@@ -18,24 +18,26 @@ export async function POST(req:Request) {
         event = stripe.webhooks.constructEvent(
             body,
             signature, 
-            process.env.STRIPE_WEBHOOK_SECRET );
+            process.env.STRIPE_WEBHOOK_SECRET || (() => { throw new Error("STRIPE_WEBHOOK_SECRET is not defined"); })() );
 
 
 
-    } catch (err: unknown) {
+    } catch (error: unknown) {
+        const err = error as Error;
+
         console.error(`Webhook/route.ts \n Webhook signature verification failed: ${err.message}`);
-
-
         return new NextResponse(`Webhook Error: ${err.message}`, {
-            status: 400})
+            status: 400
+        });
     }
 
     const session = event.data.object as Stripe.Checkout.Session;
 
     if(event.type === "checkout.session.completed"){
+        
         const subscription = await stripe.subscriptions.retrieve(
-            session.subscription as string,
-        )
+            session.subscription as string
+        ) as unknown as Stripe.Subscription & { current_period_end: number };
 
         if(!session?.metadata?.userId){
             return new NextResponse("Missing userId", { status: 400 });
@@ -57,7 +59,7 @@ export async function POST(req:Request) {
     if (event.type === "invoice.payment_succeeded"){
         const subscription = await stripe.subscriptions.retrieve(
             session.subscription as string
-        );
+        ) as unknown as Stripe.Subscription & { current_period_end: number };
 
         await prismadb.userSubsciption.update({
             where:{

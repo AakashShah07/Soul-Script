@@ -17,7 +17,7 @@ interface ComProps {
   })[];
 }
 
-const Companions = ({ data }) => {
+const Companions = ({ data }:ComProps) => {
   if (data.length === 0) {
     return (
       <div className="pt-10 flex flex-col items-center justify-normal space-y-3">

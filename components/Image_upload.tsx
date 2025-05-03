@@ -4,18 +4,18 @@ import { useEffect, useState } from "react";
 import { CldUploadButton } from 'next-cloudinary';
 import Image from "next/image";
 
-interface ImageUploadProps {
-    value: string,
-    onChange: (src: string) => void;
-    disabled?: boolean;
-};
+interface ImageUploadProps  {
+  value: string;
+  onChange: (src: string) => Promise<void> | void;
+  disabled?: boolean;
+}
 
 
 const Image_upload = ({
     value,
     onChange,
     disabled
-}) => {
+}:ImageUploadProps) => {
 
 
     const [isMounted, setMount] = useState(false);

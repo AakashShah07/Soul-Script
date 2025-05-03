@@ -4,8 +4,6 @@ import { Companion, Message } from "@prisma/client";
 import { Button } from "./ui/button";
 import { ChevronLeft, Edit, MessageSquare, MoreVertical, Trash } from "lucide-react";
 
-import { currentUser } from "@clerk/nextjs/server";
-
 import { toast } from "sonner"
 import { useRouter } from "next/navigation";
 import BotAvatar from "./bot-avatar";
@@ -22,7 +20,7 @@ interface ChatHeaderProps {
   };
 }
 
-const ChatHeader = ({ companion }) => {
+const ChatHeader = ({ companion }:ChatHeaderProps) => {
   const router = useRouter();
   const { user } = useUser();
 

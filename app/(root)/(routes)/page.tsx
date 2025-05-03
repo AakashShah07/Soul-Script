@@ -4,16 +4,16 @@ import Search_input from '@/components/search_input'
 import prismadb from '@/lib/prismadb'
 import React from 'react'
 
-interface pageProps{
-  searchParams : {
-    categoryId: string,
-    name: string
-  }
+interface PageProps {
+  searchParams: Promise<{
+    categoryId?: string;
+    name?: string;
+  }>;
 }
 
 const page =  async({
   searchParams
-}) => {
+}:PageProps) => {
 
   const {categoryId, name} = await searchParams || "";  // Default to empty string
 

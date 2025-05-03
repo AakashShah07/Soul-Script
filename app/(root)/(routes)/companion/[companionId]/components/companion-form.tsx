@@ -79,7 +79,7 @@ const Companion_form = ({ categories, initialData }: CompanionFormProps) => {
 
   const router = useRouter();
 
-  const onSubmit = async (values: z.infer<typeof form>) => {
+  const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
       if(initialData) {
         // Update companion functionality
@@ -283,7 +283,7 @@ const Companion_form = ({ categories, initialData }: CompanionFormProps) => {
             <div className="w-full flex justify-center">
               <Button size="lg" disabled={isLoading}>
                 {initialData ? "Edit your companion" : "Create your companion"}
-                <Wand2 classname="w-4 h-4 ml-2"/>
+                <Wand2 className="w-4 h-4 ml-2"/>
 
               </Button>
 

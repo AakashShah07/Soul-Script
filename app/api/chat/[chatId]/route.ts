@@ -1,5 +1,3 @@
-import { streamText } from "ai";
-import { auth } from "@clerk/nextjs";
 import Replicate from "replicate";
 import { NextResponse } from "next/server";
 import { MemoryManager } from "@/lib/memory";

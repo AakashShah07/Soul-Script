@@ -118,8 +118,8 @@ const ChatClient = ({ companion }: ChatClientProps) => {
         <ChatMessages companion={companion} isLoading={isLoading} messages={messages} />
       </div>
       <ChatForm
-  handleInputChange={(e: React.ChangeEvent<HTMLInputElement>) => setInput(e.target.value)}
-  input={input}
+handleInputChange={(e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => setInput(e.target.value)}
+input={input}
   onSubmit={onSubmit}
   isLoading={isLoading}
 />

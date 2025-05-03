@@ -25,9 +25,7 @@ const ChatIdPage = async (props: PageProps) => {
         orderBy: {
           createdAt: "asc",
         },
-        where: {
-          userId,
-        },
+        where: userId ? { userId } : undefined,
       },
       _count: {
         select: {

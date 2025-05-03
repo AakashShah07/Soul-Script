@@ -1,7 +1,5 @@
 import { Pinecone } from '@pinecone-database/pinecone';
 import { Redis } from "@upstash/redis";
-import { PineconeStore } from "@langchain/pinecone";
-import { OpenAIEmbeddings } from "@langchain/openai";
 
 export type CompanionKey = {
   companionName: string;
@@ -27,7 +25,7 @@ export class MemoryManager {
       const indexes = await this.vectorDBClient.listIndexes();
       // console.log("Available Indexes:", indexes);
 
-      if (!indexes.indexes.some((idx) => idx.name === "companion")) {
+      if (!(indexes.indexes ?? []).some((idx) => idx.name === "companion")) {
         throw new Error(`Index "companion" not found. Available indexes: ${indexes}`);
       }
 
